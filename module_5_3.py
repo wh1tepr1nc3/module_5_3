@@ -10,7 +10,7 @@ class House:
     #     else:
     #         print('Такого этажа не существует')
 
-    def __len__(self):
+    def __len__(self, other):
         return self.number_of_floors
 
     def __str__(self):
@@ -20,30 +20,36 @@ class House:
         return isinstance(other, int)
 
     def __lt__(self, other):
-        return self.number_of_floors < other.number_of_floors
+        if not isinstance(other, int):
+            return self.number_of_floors < other.number_of_floors
 
     def __le__(self, other):
-        return self.number_of_floors <= other.number_of_floors
+        if not isinstance(other, int):
+            return self.number_of_floors <= other.number_of_floors
 
     def __gt__(self, other):
-        return self.number_of_floors > other.number_of_floors
+        if not isinstance(other, int):
+            return self.number_of_floors > other.number_of_floors
 
     def __ge__(self, other):
-        return self.number_of_floors >= other.number_of_floors
+        if not isinstance(other, int):
+            return self.number_of_floors >= other.number_of_floors
 
     def __ne__(self, other):
-        return self.number_of_floors != other.number_of_floors
+        if not isinstance(other, int):
+            return self.number_of_floors != other.number_of_floors
 
     def __add__(self, value):
         self.number_of_floors += value
         return self
 
     def __iadd__(self, other):
-        return self + other
+        if isinstance(other, int) or isinstance(other, House):
+            return self + other
 
     def __radd__(self, other):
-        return self + other
-
+        if isinstance(other, int) or isinstance(other, House):
+            return self + other
 
 
 h1 = House('ЖК Эльбрус', 10)
